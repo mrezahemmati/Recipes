@@ -28,8 +28,9 @@ public struct RecipesView: View {
             ProgressView()
         case let .loaded(model, _):
             List(model.recipes) { recipe in
-                Text(recipe.name)
+                RecipeView(recipe: recipe)
             }
+            .listStyle(.plain)
             .overlay {
                 if model.recipes.isEmpty {
                     contentUnavailableView(
