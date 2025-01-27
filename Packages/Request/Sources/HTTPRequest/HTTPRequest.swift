@@ -13,23 +13,16 @@ protocol HTTPRequestRepresentable: RequestRepresentable {
     associatedtype ResponseType = (Data, URLResponse)
 }
 
-extension URLSession: RequestLoaderRepresentable {
-    public func loadResponse(for request: URLRequest) async throws -> (Data, URLResponse) {
-        if #available(iOS 15.0, *) {
-            return try await data(for: request)
-        } else {
-            return try await withCheckedThrowingContinuation { continuation in
-                let task = dataTask(with: request) { data, response, error in
-                    if let error = error {
-                        continuation.resume(throwing: error)
-                    } else if let data = data, let response = response {
-                        continuation.resume(returning: (data, response))
-                    } else {
-                        fatalError()
-                    }
-                }
-                task.resume()
-            }
-        }
+public class HTTPRequest<T: Decodable>: HTTPRequestRepresentable {
+    public init() {
+        
+    }
+    
+    public func makeRequest(from url: URL) throws -> URLRequest {
+        return URLRequest(url: url)
+    }
+    
+    public func parseResponse(response: (Data, URLResponse)) throws -> T {
+        return try JSONDecoder().decode(T.self, from: response.0)
     }
 }

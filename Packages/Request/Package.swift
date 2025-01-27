@@ -15,6 +15,10 @@ let package = Package(
         .library(
             name: "HTTPRequest",
             targets: ["HTTPRequest"]
+        ),
+        .library(
+            name: "FileSystemRequest",
+            targets: ["FileSystemRequest"]
         )
     ],
     targets: [
@@ -24,6 +28,10 @@ let package = Package(
             name: "Request"),
         .target(
             name: "HTTPRequest",
+            dependencies: ["Request"]
+        ),
+        .target(
+            name: "FileSystemRequest",
             dependencies: ["Request"]
         ),
         .testTarget(
