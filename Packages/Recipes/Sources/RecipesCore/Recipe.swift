@@ -44,3 +44,5 @@ extension Recipe: Identifiable {
         return uuid
     }
 }
+
+extension Recipe: Sendable {}

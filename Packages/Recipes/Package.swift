@@ -23,7 +23,8 @@ let package = Package(
     ],
     dependencies: [
         .package(path: "./AsyncDataModel"),
-        .package(path: "./Request")
+        .package(path: "./Request"),
+        .package(path: "./RemoteImage"),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
@@ -42,7 +43,10 @@ let package = Package(
         ),
         .target(
             name: "RecipesUI",
-            dependencies: ["RecipesDataModels"],
+            dependencies: [
+                "RecipesDataModels",
+                .product(name: "RemoteImage", package: "RemoteImage")
+            ],
             resources: [
                 .process("Resources")
             ]

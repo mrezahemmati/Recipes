@@ -7,13 +7,14 @@
 
 import SwiftUI
 import RecipesCore
+import RemoteImage
 
 struct RecipeView: View {
     let recipe: Recipe
     
     var body: some View {
         HStack {
-            AsyncImage(url: recipe.smallPhotoURL) { image in
+            RemoteImage(url: recipe.smallPhotoURL) { image in
                 image.resizable()
             } placeholder: {
                 if recipe.smallPhotoURL != nil {
