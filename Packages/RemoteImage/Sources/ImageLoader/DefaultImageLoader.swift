@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import ImageLoader
 import UIKit
 
 final class DefaultImageLoader: ImageLoader {

@@ -4,32 +4,32 @@
 import PackageDescription
 
 let package = Package(
-    name: "RemoteImage",
+    name: "CachingImageLoader",
     platforms: [.iOS(.v15)],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
-            name: "RemoteImage",
-            targets: ["RemoteImage"]
+            name: "CachingImageLoader",
+            targets: ["CachingImageLoader"]
         ),
-        .library(
-            name: "ImageLoader",
-            targets: ["ImageLoader"]
-        ),
+    ],
+    dependencies: [
+        .package(path: "./Cache"),
+        .package(path: "./RemoteImage")
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
-            name: "ImageLoader"
-        ),
-        .target(
-            name: "RemoteImage",
-            dependencies: ["ImageLoader"]
+            name: "CachingImageLoader",
+            dependencies: [
+                .product(name: "Cache", package: "Cache"),
+                .product(name: "ImageLoader", package: "RemoteImage"),
+            ]
         ),
         .testTarget(
-            name: "RemoteImageTests",
-            dependencies: ["RemoteImage"]
+            name: "CachingImageLoaderTests",
+            dependencies: ["CachingImageLoader"]
         ),
     ]
 )

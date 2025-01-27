@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import SwiftUI
 
 public enum ImageLoaderError: Error {
     case couldNotLoadData(_ underlyingError: Error?)
@@ -15,4 +16,14 @@ public enum ImageLoaderError: Error {
 
 public protocol ImageLoader: Sendable {
     func loadImage(url: URL, scale: CGFloat) async throws -> UIImage
+}
+
+extension EnvironmentValues {
+    @Entry var imageLoader: ImageLoader = DefaultImageLoader()
+}
+
+extension View {
+    public func imageLoader(_ imageLoader: ImageLoader) -> some View {
+        return environment(\.imageLoader, imageLoader)
+    }
 }

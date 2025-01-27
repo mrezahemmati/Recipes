@@ -6,12 +6,18 @@
 //
 
 import SwiftUI
+import CachingImageLoader
+import LocalDiskCache
+import ImageLoader
 
 @main
 struct RecipesApp: App {
+    let cache = LocalDiskCache()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .imageLoader(CachingImageLoader(cache: cache))
         }
     }
 }

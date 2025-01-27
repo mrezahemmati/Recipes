@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		B20097642D4718920028CEC0 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = B20097632D47188D0028CEC0 /* README.md */; };
+		B2ADC6832D478692002BCCB8 /* CachingImageLoader in Frameworks */ = {isa = PBXBuildFile; productRef = B2ADC6822D478692002BCCB8 /* CachingImageLoader */; };
+		B2ADC6862D4786D2002BCCB8 /* LocalDiskCache in Frameworks */ = {isa = PBXBuildFile; productRef = B2ADC6852D4786D2002BCCB8 /* LocalDiskCache */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +64,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2ADC6862D4786D2002BCCB8 /* LocalDiskCache in Frameworks */,
+				B2ADC6832D478692002BCCB8 /* CachingImageLoader in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,6 +128,8 @@
 			);
 			name = Recipes;
 			packageProductDependencies = (
+				B2ADC6822D478692002BCCB8 /* CachingImageLoader */,
+				B2ADC6852D4786D2002BCCB8 /* LocalDiskCache */,
 			);
 			productName = Recipes;
 			productReference = B20097362D4717110028CEC0 /* Recipes.app */;
@@ -207,6 +213,10 @@
 			);
 			mainGroup = B200972D2D4717110028CEC0;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				B2ADC6812D478692002BCCB8 /* XCLocalSwiftPackageReference "Packages/CachingImageLoader" */,
+				B2ADC6842D4786D2002BCCB8 /* XCLocalSwiftPackageReference "Packages/Cache" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = B20097372D4717110028CEC0 /* Products */;
 			projectDirPath = "";
@@ -567,6 +577,28 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		B2ADC6812D478692002BCCB8 /* XCLocalSwiftPackageReference "Packages/CachingImageLoader" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Packages/CachingImageLoader;
+		};
+		B2ADC6842D4786D2002BCCB8 /* XCLocalSwiftPackageReference "Packages/Cache" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Packages/Cache;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B2ADC6822D478692002BCCB8 /* CachingImageLoader */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CachingImageLoader;
+		};
+		B2ADC6852D4786D2002BCCB8 /* LocalDiskCache */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = LocalDiskCache;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B200972E2D4717110028CEC0 /* Project object */;
 }

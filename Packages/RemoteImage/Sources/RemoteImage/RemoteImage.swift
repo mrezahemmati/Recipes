@@ -73,13 +73,3 @@ public struct _RemoteImageContentView<I: View, P: View>: View {
         }
     }
 }
-
-extension EnvironmentValues {
-    @Entry var imageLoader: ImageLoader = DefaultImageLoader()
-}
-
-extension View {
-    public func imageLoader(_ imageLoader: ImageLoader) -> some View {
-        return environment(\.imageLoader, imageLoader)
-    }
-}
