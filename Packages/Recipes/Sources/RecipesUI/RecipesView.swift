@@ -8,6 +8,7 @@
 import SwiftUI
 import RecipesCore
 import RecipesDataModels
+import AsyncDataModel
 
 public struct RecipesView: View {
     @ObservedObject var dataModel: RecipesDataModel
@@ -17,20 +18,43 @@ public struct RecipesView: View {
     }
     
     public var body: some View {
-        Group {
-            switch dataModel.state {
-            case .none:
-                Text("none")
-            case .loading:
-                Text("loading")
-            case .loaded:
-                Text("loaded")
-            case .error:
-                Text("error")
+        switch dataModel.state {
+        case .none:
+            Color.clear
+                .task {
+                    await dataModel.load()
+                }
+        case .loading:
+            ProgressView()
+        case let .loaded(model, _):
+            List(model.recipes) { recipe in
+                Text(recipe.name)
             }
+            .overlay {
+                if model.recipes.isEmpty {
+                    contentUnavailableView(
+                        title: "No recepies found",
+                        systemImage: "rectangle.on.rectangle.slash"
+                    )
+                }
+            }
+            .refreshable {
+                await dataModel.refresh()
+            }
+        case .error:
+            contentUnavailableView(
+                title: "Something went wrong, please try again later.",
+                systemImage: "exclamationmark.triangle"
+            )
         }
-        .task {
-            await dataModel.load()
+    }
+    
+    @ViewBuilder
+    func contentUnavailableView(title: String, systemImage: String) -> some View {
+        if #available(iOS 17.0, *) {
+            ContentUnavailableView(title, systemImage: systemImage)
+        } else {
+            Label(title, systemImage: systemImage)
         }
     }
 }
@@ -41,6 +65,12 @@ public struct RecipesView: View {
             bundle: .module,
             resource: "recipes"
         )
+    )
+}
+
+#Preview("Loading") {
+    RecipesView(
+        dataModel: .init(ConstantDataModel<RecipeList>(state: .loading))
     )
 }
 

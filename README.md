@@ -12,6 +12,7 @@ Did you make any significant trade-offs in your approach?
 
 ### Weakest Part of the Project:
 What do you think is the weakest part of your project?
+1. Preview Content is part of the RecipesUI target and will be deployed in production.
 
 ### Additional Information:
 Is there anything else we should know? Feel free to share any insights or constraints you encountered.
