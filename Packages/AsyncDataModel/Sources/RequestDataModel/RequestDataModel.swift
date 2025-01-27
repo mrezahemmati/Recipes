@@ -12,7 +12,8 @@ import Foundation
 @MainActor
 public class RequestDataModel<Model, RequestAdaptor: RequestAdapting, RequestLoader: RequestLoaderRepresentable>: AsyncDataModel where Model == RequestAdaptor.ResultResult, RequestLoader.RequestType == RequestAdaptor.RequestType, RequestLoader.ResponseType == RequestAdaptor.ResponseType {
     
-    @Published public var state: DataModelLoadingState<Model>
+    @Published
+    public private(set) var state: DataModelLoadingState<Model>
     private let params: RequestAdaptor.ParameterType
     private let requestAdaptor: RequestAdaptor
     private let loader: RequestLoader
