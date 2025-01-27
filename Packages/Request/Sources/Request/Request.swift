@@ -14,3 +14,10 @@ public protocol RequestRepresentable {
     func makeRequest(from parameter: ParameterType) throws -> RequestType
     func parseResponse(response: ResponseType) throws -> ResultResult
 }
+
+public protocol RequestLoaderRepresentable {
+    associatedtype RequestType
+    associatedtype ResponseType
+    
+    func loadResponse(for request: RequestType) async throws -> ResponseType
+}
