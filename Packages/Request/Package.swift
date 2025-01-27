@@ -17,8 +17,8 @@ let package = Package(
             targets: ["HTTPRequest"]
         ),
         .library(
-            name: "FileSystemRequest",
-            targets: ["FileSystemRequest"]
+            name: "BundleResourceRequest",
+            targets: ["BundleResourceRequest"]
         )
     ],
     targets: [
@@ -31,7 +31,7 @@ let package = Package(
             dependencies: ["Request"]
         ),
         .target(
-            name: "FileSystemRequest",
+            name: "BundleResourceRequest",
             dependencies: ["Request"]
         ),
         .testTarget(

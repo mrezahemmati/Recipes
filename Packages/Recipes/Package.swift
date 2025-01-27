@@ -38,7 +38,7 @@ let package = Package(
                 "RecipesCore",
                 .product(name: "RequestDataModel", package: "AsyncDataModel"),
                 .product(name: "HTTPRequest", package: "Request"),
-                .product(name: "FileSystemRequest", package: "Request")
+                .product(name: "BundleResourceRequest", package: "Request")
             ]
         ),
         .target(

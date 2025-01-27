@@ -1,5 +1,5 @@
 //
-//  FileSystemRequest.swift
+//  BundleResourceRequest.swift
 //  Request
 //
 //  Created by Mohammadreza Hemmati on 1/26/25.
@@ -8,7 +8,7 @@
 import Foundation
 import Request
 
-public struct FileResource: Sendable {
+public struct BundleResource: Sendable {
     public let bundle: Bundle
     public let resourceName: String
     public let fileExtension: String
@@ -20,15 +20,15 @@ public struct FileResource: Sendable {
     }
 }
 
-protocol FileSystemRequestRepresentable: RequestAdapting {
-    associatedtype RequestType = FileResource
+protocol BundleResourceRequestRepresentable: RequestAdapting {
+    associatedtype RequestType = BundleResource
     associatedtype ResponseType = Data
 }
 
-public class FileSystemRequest<T: Decodable>: FileSystemRequestRepresentable {
+public class BundleResourceRequest<T: Decodable>: BundleResourceRequestRepresentable {
     public init() {}
     
-    public func makeRequest(from input: FileResource) throws -> FileResource {
+    public func makeRequest(from input: BundleResource) throws -> BundleResource {
         return input
     }
     

@@ -8,7 +8,7 @@
 import Foundation
 import RequestDataModel
 import HTTPRequest
-import FileSystemRequest
+import BundleResourceRequest
 import RecipesCore
 
 @MainActor
@@ -23,9 +23,9 @@ public class RecipesDataModelFactory {
     
     public static func dataModel(bundle: Bundle, resource: String, fileExtension: String = "json") -> RecipesDataModel {
         return .init(RequestDataModel(
-            params: FileResource(bundle: bundle, resourceName: resource, fileExtension: fileExtension),
-            requestAdaptor: FileSystemRequest<RecipeList>(),
-            loader: FileResourceLoader()
+            params: BundleResource(bundle: bundle, resourceName: resource, fileExtension: fileExtension),
+            requestAdaptor: BundleResourceRequest<RecipeList>(),
+            loader: BundleResourceLoader()
         ))
     }
 }

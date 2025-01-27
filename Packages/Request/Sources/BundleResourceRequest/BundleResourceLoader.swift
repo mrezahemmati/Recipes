@@ -8,7 +8,7 @@
 import Foundation
 import Request
 
-final public class FileResourceLoader: RequestLoaderRepresentable {
+final public class BundleResourceLoader: RequestLoaderRepresentable {
     enum Error: Swift.Error {
         case coundNotReadResource(any Swift.Error)
         case notFound
@@ -17,7 +17,7 @@ final public class FileResourceLoader: RequestLoaderRepresentable {
     public init() {
     }
     
-    public func loadResponse(for request: FileResource) async throws -> Data {
+    public func loadResponse(for request: BundleResource) async throws -> Data {
         guard let path = request.bundle.path(forResource: request.resourceName, ofType: request.fileExtension) else {
             throw Error.notFound
         }
