@@ -15,6 +15,10 @@ let package = Package(
             name: "LocalDiskCache",
             targets: ["LocalDiskCache"]
         ),
+        .library(
+            name: "MemoryCache",
+            targets: ["MemoryCache"]
+        ),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
@@ -24,6 +28,10 @@ let package = Package(
         ),
         .target(
             name: "LocalDiskCache",
+            dependencies: ["Cache"]
+        ),
+        .target(
+            name: "MemoryCache",
             dependencies: ["Cache"]
         ),
         .testTarget(
