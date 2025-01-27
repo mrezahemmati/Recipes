@@ -39,3 +39,9 @@ public final class AnyAsyncDataModel<Model>: AsyncDataModel {
         await _refresh()
     }
 }
+
+extension AnyAsyncDataModel {
+    public static func constant(_ value: Model) -> AnyAsyncDataModel<Model> {
+        return .init(ConstantDataModel(value))
+    }
+}

@@ -13,6 +13,10 @@ let package = Package(
             targets: ["RecipesCore"]
         ),
         .library(
+            name: "RecipesDataModels",
+            targets: ["RecipesDataModels"]
+        ),
+        .library(
             name: "RecipesUI",
             targets: ["RecipesUI"]
         ),
@@ -21,6 +25,9 @@ let package = Package(
             targets: ["RecipesUIPreview"]
         ),
     ],
+    dependencies: [
+        .package(path: "./AsyncDataModel")
+    ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
@@ -28,8 +35,15 @@ let package = Package(
             name: "RecipesCore"
         ),
         .target(
+            name: "RecipesDataModels",
+            dependencies: [
+                "RecipesCore",
+                .product(name: "RequestDataModel", package: "AsyncDataModel")
+            ]
+        ),
+        .target(
             name: "RecipesUI",
-            dependencies: ["RecipesCore"]
+            dependencies: ["RecipesDataModels"]
         ),
         .target(
             name: "RecipesUIPreview",

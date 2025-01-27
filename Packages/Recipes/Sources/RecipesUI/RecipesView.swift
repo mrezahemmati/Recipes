@@ -7,13 +7,16 @@
 
 import SwiftUI
 import RecipesCore
+import RecipesDataModels
 
 struct RecipesView: View {
+    @ObservedObject var dataModel: RecipesDataModel
+    
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
 }
 
 #Preview {
-    RecipesView()
+    RecipesView(dataModel: .constant(RecipeList(recipes: [])))
 }
