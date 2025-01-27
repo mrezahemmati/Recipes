@@ -9,14 +9,55 @@ import SwiftUI
 import RecipesCore
 import RecipesDataModels
 
-struct RecipesView: View {
+public struct RecipesView: View {
     @ObservedObject var dataModel: RecipesDataModel
     
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+    public init(dataModel: RecipesDataModel) {
+        self.dataModel = dataModel
+    }
+    
+    public var body: some View {
+        Group {
+            switch dataModel.state {
+            case .none:
+                Text("none")
+            case .loading:
+                Text("loading")
+            case .loaded:
+                Text("loaded")
+            case .error:
+                Text("error")
+            }
+        }
+        .task {
+            await dataModel.load()
+        }
     }
 }
 
-#Preview {
-    RecipesView(dataModel: .constant(RecipeList(recipes: [])))
+#Preview("Loaded") {
+    RecipesView(
+        dataModel: RecipesDataModelFactory.dataModel(
+            bundle: .module,
+            resource: "recipes"
+        )
+    )
+}
+
+#Preview("Empty") {
+    RecipesView(
+        dataModel: RecipesDataModelFactory.dataModel(
+            bundle: .module,
+            resource: "recipes-empty"
+        )
+    )
+}
+
+#Preview("Malformed") {
+    RecipesView(
+        dataModel: RecipesDataModelFactory.dataModel(
+            bundle: .module,
+            resource: "recipes-malformed"
+        )
+    )
 }

@@ -8,10 +8,13 @@
 import Foundation
 import Request
 
-final class FileResourceLoader: RequestLoaderRepresentable {
+final public class FileResourceLoader: RequestLoaderRepresentable {
     enum Error: Swift.Error {
         case coundNotReadResource(any Swift.Error)
         case notFound
+    }
+    
+    public init() {
     }
     
     public func loadResponse(for request: FileResource) async throws -> Data {
