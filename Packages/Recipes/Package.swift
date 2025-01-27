@@ -24,7 +24,10 @@ let package = Package(
             name: "RecipesUI", dependencies: ["RecipesCore"]),
         .testTarget(
             name: "RecipesCoreTests",
-            dependencies: ["RecipesCore"]
+            dependencies: ["RecipesCore"],
+            resources: [
+                .process("Resources")
+            ]
         ),
         .testTarget(
             name: "RecipesUITests",
