@@ -19,7 +19,7 @@ public protocol ImageLoader: Sendable {
 }
 
 extension EnvironmentValues {
-    @Entry var imageLoader: ImageLoader = DefaultImageLoader()
+    @Entry public var imageLoader: ImageLoader = DefaultImageLoader()
 }
 
 extension View {

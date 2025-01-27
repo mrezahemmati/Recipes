@@ -18,35 +18,40 @@ public struct RecipesView: View {
     }
     
     public var body: some View {
-        switch dataModel.state {
-        case .none:
-            Color.clear
+        Group {
+            switch dataModel.state {
+            case .none:
+                Color.clear
+            case .loading:
+                ProgressView()
+            case let .loaded(model, _):
+                List(model.recipes) { recipe in
+                    RecipeView(recipe: recipe)
+                }
+                .listStyle(.plain)
+                .overlay {
+                    if model.recipes.isEmpty {
+                        contentUnavailableView(
+                            title: "No recepies found",
+                            systemImage: "rectangle.on.rectangle.slash"
+                        )
+                    }
+                }
+                .refreshable {
+                    await dataModel.refresh()
+                }
+            case let .error(error):
+                contentUnavailableView(
+                    title: "Something went wrong, please try again later.",
+                    systemImage: "exclamationmark.triangle"
+                )
                 .task {
-                    await dataModel.load()
-                }
-        case .loading:
-            ProgressView()
-        case let .loaded(model, _):
-            List(model.recipes) { recipe in
-                RecipeView(recipe: recipe)
-            }
-            .listStyle(.plain)
-            .overlay {
-                if model.recipes.isEmpty {
-                    contentUnavailableView(
-                        title: "No recepies found",
-                        systemImage: "rectangle.on.rectangle.slash"
-                    )
+                    print(error)
                 }
             }
-            .refreshable {
-                await dataModel.refresh()
-            }
-        case .error:
-            contentUnavailableView(
-                title: "Something went wrong, please try again later.",
-                systemImage: "exclamationmark.triangle"
-            )
+        }
+        .task {
+            await dataModel.load()
         }
     }
     

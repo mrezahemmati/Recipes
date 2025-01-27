@@ -6,16 +6,20 @@
 //
 
 import SwiftUI
+import RecipesUI
+import RecipesDataModels
 
 struct ContentView: View {
+    @StateObject
+    private var dataModel = RecipesDataModelFactory.dataModel(
+        url: URL(string: "https://d3jbb8n5wk0qxi.cloudfront.net/recipes.json")!
+    )
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationView {
+            RecipesView(dataModel: dataModel)
+                .navigationTitle("Recipes")
         }
-        .padding()
     }
 }
 
