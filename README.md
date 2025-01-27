@@ -12,7 +12,15 @@ Did you make any significant trade-offs in your approach?
 
 ### Weakest Part of the Project:
 What do you think is the weakest part of your project?
-1. Preview Content is part of the RecipesUI target and will be deployed in production.
+
+- Preview Content is part of the RecipesUI target and will be deployed in production.
+- Test coverage
+- No search, sort and filter functionality
+- No Adaptation to Big Screens (replacing List with Grid may help)
+- Focus
+- Accessbility
+- I18n
+- Documentation 
 
 ### Additional Information:
 Is there anything else we should know? Feel free to share any insights or constraints you encountered.
