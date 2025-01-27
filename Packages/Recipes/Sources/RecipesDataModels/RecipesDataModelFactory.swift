@@ -21,7 +21,7 @@ public class RecipesDataModelFactory {
         ))
     }
     
-    public static func dataModel(bundle: Bundle = .main, resource: String, fileExtension: String = "json") -> RecipesDataModel {
+    public static func dataModel(bundle: Bundle, resource: String, fileExtension: String = "json") -> RecipesDataModel {
         return .init(RequestDataModel(
             params: FileResource(bundle: bundle, resourceName: resource, fileExtension: fileExtension),
             requestAdaptor: FileSystemRequest<RecipeList>(),
