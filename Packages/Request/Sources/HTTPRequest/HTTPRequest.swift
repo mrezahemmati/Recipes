@@ -8,7 +8,7 @@
 import Foundation
 import Request
 
-protocol HTTPRequestRepresentable: RequestRepresentable {
+protocol HTTPRequestRepresentable: RequestAdapting {
     associatedtype RequestType = URLRequest
     associatedtype ResponseType = (Data, URLResponse)
 }

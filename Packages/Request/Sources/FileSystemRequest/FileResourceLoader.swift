@@ -1,5 +1,5 @@
 //
-//  FileManager+RequestLoader.swift
+//  FileResourceLoader.swift
 //  Request
 //
 //  Created by Mohammadreza Hemmati on 1/26/25.
@@ -8,7 +8,7 @@
 import Foundation
 import Request
 
-extension FileManager: RequestLoaderRepresentable {
+final class FileResourceLoader: RequestLoaderRepresentable {
     enum Error: Swift.Error {
         case coundNotReadResource(any Swift.Error)
         case notFound

@@ -8,7 +8,7 @@
 import Foundation
 import Request
 
-public struct FileResource {
+public struct FileResource: Sendable {
     public let bundle: Bundle
     public let resourceName: String
     public let fileExtension: String
@@ -20,7 +20,7 @@ public struct FileResource {
     }
 }
 
-protocol FileSystemRequestRepresentable: RequestRepresentable {
+protocol FileSystemRequestRepresentable: RequestAdapting {
     associatedtype RequestType = FileResource
     associatedtype ResponseType = Data
 }

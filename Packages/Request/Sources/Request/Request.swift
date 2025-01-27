@@ -5,17 +5,17 @@
 //  Created by Mohammadreza Hemmati on 1/26/25.
 //
 
-public protocol RequestRepresentable {
+public protocol RequestAdapting {
     associatedtype ParameterType
-    associatedtype RequestType
-    associatedtype ResponseType
+    associatedtype RequestType: Sendable
+    associatedtype ResponseType: Sendable
     associatedtype ResultResult
     
     func makeRequest(from parameter: ParameterType) throws -> RequestType
     func parseResponse(response: ResponseType) throws -> ResultResult
 }
 
-public protocol RequestLoaderRepresentable {
+public protocol RequestLoaderRepresentable: Sendable {
     associatedtype RequestType
     associatedtype ResponseType
     

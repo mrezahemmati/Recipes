@@ -7,19 +7,19 @@
 
 import Foundation
 
-public enum DataModelLoadingPhase<Model> {
+public enum DataModelLoadingState<Model> {
     case none
     case loading
-    case loaded(Model)
-    case failed(Error)
+    case loaded(model: Model, isRefreshing: Bool)
+    case error(Error)
 }
 
 @MainActor
 public protocol AsyncDataModel: ObservableObject {
     associatedtype Model
     
-    var phase: DataModelLoadingPhase<Model> { get }
+    var state: DataModelLoadingState<Model> { get }
     
-    func load()
-    func refresh()
+    func load() async
+    func refresh() async
 }
