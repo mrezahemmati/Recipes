@@ -50,6 +50,11 @@
 			path = RecipesUITests;
 			sourceTree = "<group>";
 		};
+		B20097F42D471D280028CEC0 /* Packages */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Packages;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				B20097632D47188D0028CEC0 /* README.md */,
+				B20097F42D471D280028CEC0 /* Packages */,
 				B20097382D4717110028CEC0 /* Recipes */,
 				B20097492D4717130028CEC0 /* RecipesTests */,
 				B20097532D4717130028CEC0 /* RecipesUITests */,
