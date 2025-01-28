@@ -1,6 +1,11 @@
 # Recipes
 Recipes is a SwiftUI app that displays recipes from an API endpoint.
 
+<p float="left">
+  <img width="300" alt="image" src="./Images/Light.png?raw=true">
+  <img width="300" alt="image" src="./Images/Dark.png?raw=true">
+</p>
+
 ### Features
 - **Recipe Display**: Each recipe shows its name, photo, and cuisine type.
 - **List Refresh**: Users can refresh the recipe list at any time.
