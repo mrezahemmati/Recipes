@@ -10,8 +10,7 @@ import Combine
 
 @MainActor
 public final class AnyAsyncDataModel<Model>: AsyncDataModel {
-    private let _load: () async -> Void
-    private let _refresh: () async -> Void
+    private let base: any AsyncDataModel
     private let _state: () -> DataModelLoadingState<Model>
     private var cancellables = Set<AnyCancellable>()
     
@@ -21,8 +20,7 @@ public final class AnyAsyncDataModel<Model>: AsyncDataModel {
     
     public init<T: AsyncDataModel>(_ dataModel: T) where T.Model == Model {
         self._state = { dataModel.state }
-        self._load = { await dataModel.load() }
-        self._refresh = { await dataModel.refresh() }
+        self.base = dataModel
         
         dataModel.objectWillChange
             .sink { [weak self] _ in
@@ -33,11 +31,11 @@ public final class AnyAsyncDataModel<Model>: AsyncDataModel {
     }
     
     public func load() async {
-        await _load()
+        await base.load()
     }
     
     public func refresh() async {
-        await _refresh()
+        await base.refresh()
     }
 }
 
