@@ -10,15 +10,15 @@ import AsyncDataModel
 import Foundation
 
 @MainActor
-public class RequestDataModel<Model, RequestAdaptor: RequestAdapting, RequestLoader: RequestLoaderRepresentable>: AsyncDataModel where Model == RequestAdaptor.ResultResult, RequestLoader.RequestType == RequestAdaptor.RequestType, RequestLoader.ResponseType == RequestAdaptor.ResponseType {
+public class RequestDataModel<Model, RequestAdaptor: RequestAdapting, ResponseLoader: ResponseLoading>: AsyncDataModel where Model == RequestAdaptor.ResultResult, ResponseLoader.RequestType == RequestAdaptor.RequestType, ResponseLoader.ResponseType == RequestAdaptor.ResponseType {
     
     @Published
     public private(set) var state: DataModelLoadingState<Model>
     private let params: RequestAdaptor.ParameterType
     private let requestAdaptor: RequestAdaptor
-    private let loader: RequestLoader
+    private let loader: ResponseLoader
     
-    public init(params: RequestAdaptor.ParameterType, requestAdaptor: RequestAdaptor, loader: RequestLoader) {
+    public init(params: RequestAdaptor.ParameterType, requestAdaptor: RequestAdaptor, loader: ResponseLoader) {
         self.state = .none
         self.params = params
         self.requestAdaptor = requestAdaptor

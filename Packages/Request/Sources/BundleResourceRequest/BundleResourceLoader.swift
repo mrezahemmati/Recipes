@@ -8,7 +8,7 @@
 import Foundation
 import Request
 
-final public class BundleResourceLoader: RequestLoaderRepresentable {
+final public class BundleResourceLoader: ResponseLoading {
     enum Error: Swift.Error {
         case coundNotReadResource(any Swift.Error)
         case notFound

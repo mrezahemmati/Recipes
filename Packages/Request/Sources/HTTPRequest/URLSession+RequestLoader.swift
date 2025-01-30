@@ -8,7 +8,7 @@
 import Request
 import Foundation
 
-extension URLSession: RequestLoaderRepresentable {
+extension URLSession: ResponseLoading {
     public func loadResponse(for request: URLRequest) async throws -> (Data, URLResponse) {
         if #available(iOS 15.0, *) {
             return try await data(for: request)

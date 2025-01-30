@@ -15,7 +15,7 @@ public protocol RequestAdapting {
     func parseResponse(response: ResponseType) throws -> ResultResult
 }
 
-public protocol RequestLoaderRepresentable: Sendable {
+public protocol ResponseLoading: Sendable {
     associatedtype RequestType
     associatedtype ResponseType
     
